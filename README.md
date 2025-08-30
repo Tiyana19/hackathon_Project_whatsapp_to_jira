@@ -121,3 +121,7 @@ The goal is to turn messy, informal WhatsApp chats into **clean, actionable Jira
 *   **Scalability (15%)** – Can it handle multiple chats, attachments, and projects?
     
 *   **Innovation (10%)** – Features like deduplication, priority prediction, multilingual support.
+
+
+
+
