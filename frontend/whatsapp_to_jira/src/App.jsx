@@ -45,12 +45,19 @@ function DraftsPanel({ source, onDraftApproved }) {
       <h3>{source === "whatsapp" ? "WhatsApp Drafts" : "Slack Drafts"}</h3>
       <button onClick={load}>Refresh</button>
       {list.map(row => (
-        <div key={row.id} style={{ border: "1px solid #ddd", margin: 8, padding: 8 }}>
-          <b>#{row.id}</b> {row.messages.join(" / ")}
-          <div>{row.draft.title} — {row.draft.priority}</div>
-          <button  onClick={() => approve(row.id)}>Approve → Jira</button>
-        </div>
-      ))}
+  <div key={row.id} style={{ border: "1px solid #ddd", margin: 8, padding: 8 }}>
+    <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <b>#{row.id} from {row.from}</b>
+      {row.createdAt && (
+        <small>{new Date(row.createdAt).toLocaleString()}</small>
+      )}
+    </div>
+    <div style={{ marginTop: 6 }}>{row.messages.join(" / ")}</div>
+    <div>{row.draft.title} — {row.draft.priority}</div>
+    <button onClick={() => approve(row.id)}>Approve → Jira</button>
+  </div>
+))}
+
     </section>
   );
 }

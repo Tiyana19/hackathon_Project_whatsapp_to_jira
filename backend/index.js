@@ -158,17 +158,20 @@ app.post("/slack/events", express.json(), (req, res) => {
 
   // Slack message event
   if (body.event && body.event.type === "message" && !body.event.bot_id) {
-    const userMsg = body.event.text;
-    const messages = [userMsg];
-    const draft = naiveParse(messages);
+  const userMsg = body.event.text;
+  const messages = [userMsg];
+  const draft = naiveParse(messages);
 
-    const id = String(nextId++);
-    drafts.set(id, { id, from: "slack", messages, attachments: [], draft });
-    console.log(` Slack message captured: ${userMsg}`);
-  }
+  const id = String(nextId++);
+  const createdAt = new Date().toISOString();
+  drafts.set(id, { id, from: "slack", messages, attachments: [], draft, createdAt });
+
+  console.log(` Slack message captured: ${userMsg} @ ${createdAt}`);
+}
+
 
   res.send("ok");
-});
+}); 
 
 // ---------------- Start Server ----------------
 app.listen(process.env.PORT, () => {
