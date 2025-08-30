@@ -20,7 +20,7 @@ function MockPanel({ onDraft }) {
   return (
     <section>
       <h3>Mock Input</h3>
-      <textarea rows={6} value={messages.join("\n")} onChange={e => setMessages(e.target.value.split("\n"))} />
+      <textarea style={{ width: "400px", height: "150px", padding: "10px", border: "2px solid #3793c9ff", color: "#ffffffff", fontSize: "16px", resize: "vertical", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)" }} rows={6} value={messages.join("\n")} onChange={e => setMessages(e.target.value.split("\n"))} />
       <button onClick={generateDraft}>Generate Draft</button>
     </section>
   );
@@ -66,15 +66,15 @@ export default function App() {
   };
 
   return (
-    <div style={{ padding: 20 }}>
-      <h1>Multi-Channel → Jira</h1>
-      <div>
+    <div style={{ padding: 20, display:"grid", gridTemplateColumns: "1fr 1fr 3fr", gap: 10, alignItems: "center", justifyContent: "center" }}>
+      <h1 style={{ gridColumn: "1 / span 3" }} >CHAT TO JIRA</h1>
+      <div style={{ gridColumn: "1 / span 3" }}>
         <button onClick={() => setTab("mock")}>Mock</button>
         <button onClick={() => setTab("whatsapp")}>WhatsApp</button>
         <button onClick={() => setTab("slack")}>Slack</button>
       </div>
 
-      <div style={{ display: "flex", gap: 20 }}>
+      <div style={{ padding: 20, border: "1px solid #ddd", display: "flex", gap: 20, gridColumn: "1 / span 3" }}>
         {tab === "mock" && <MockPanel onDraft={setDraft} />}
         {tab === "whatsapp" && <DraftsPanel source="whatsapp" onDraftApproved={setIssue} />}
         {tab === "slack" && <DraftsPanel source="slack" onDraftApproved={setIssue} />}
@@ -84,7 +84,7 @@ export default function App() {
           {!draft ? <p>No draft yet</p> : (
             <>
               <input value={draft.title} onChange={e => setDraft({ ...draft, title: e.target.value })} />
-              <textarea value={draft.description} onChange={e => setDraft({ ...draft, description: e.target.value })} />
+              <textarea style={{ width: "400px", height: "150px", padding: "10px", border: "2px solid #3793c9ff", borderRadius: "8px", color: "#ffffffff", fontSize: "16px", resize: "vertical", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)" }} value={draft.description} onChange={e => setDraft({ ...draft, description: e.target.value })} />
               <button onClick={createJira}>Create Jira</button>
             </>
           )}

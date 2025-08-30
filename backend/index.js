@@ -115,6 +115,7 @@ app.post("/drafts/:id/approve", async (req, res) => {
     } catch {
       r = await createJiraIssue({ fields: baseFields });
     }
+       drafts.delete(req.params.id);
     res.json({ key: r.data.key, self: r.data.self });
   } catch (e) {
     console.error("Jira creation failed:", e?.response?.data || e.message || e);
