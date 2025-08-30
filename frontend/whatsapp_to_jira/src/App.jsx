@@ -79,12 +79,12 @@ export default function App() {
         {tab === "whatsapp" && <DraftsPanel source="whatsapp" onDraftApproved={setIssue} />}
         {tab === "slack" && <DraftsPanel source="slack" onDraftApproved={setIssue} />}
 
-        <section>
+        <section style={{display:"flex", flexDirection:"column"}}>
           <h3>Review Draft</h3>
           {!draft ? <p>No draft yet</p> : (
             <>
-              <input value={draft.title} onChange={e => setDraft({ ...draft, title: e.target.value })} />
-              <textarea style={{ width: "400px", height: "150px", padding: "10px", border: "2px solid #3793c9ff", borderRadius: "8px", color: "#ffffffff", fontSize: "16px", resize: "vertical", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)" }} value={draft.description} onChange={e => setDraft({ ...draft, description: e.target.value })} />
+              <input style={{display:"inline", width: "400px", height: "20px", padding: "10px", border: "2px solid #3793c9ff", borderRadius: "8px", color: "#ffffffff", fontSize: "16px", resize: "vertical", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)" }} value={draft.title} onChange={e => setDraft({ ...draft, title: e.target.value })} />
+              <textarea style={{display:"inline", width: "400px", height: "150px", padding: "10px", border: "2px solid #3793c9ff", borderRadius: "8px", color: "#ffffffff", fontSize: "16px", resize: "vertical", boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)" }} value={draft.description} onChange={e => setDraft({ ...draft, description: e.target.value })} />
               <button style={{display: "block", margin: "10px auto", padding: "10px 20px", backgroundColor: "#3793c9ff", color: "#ffffff", border: "none", borderRadius: "8px", cursor: "pointer"}} onClick={createJira}>Create Jira</button>
             </>
           )}
